@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site</title>
+    <title>Organizador de provas</title>
     <style>
         html {
             justify-content: center;
             text-align: center;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .prova {
+            background-color: lightgreen;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -16,14 +22,15 @@
     <h1 style="color: green;">Organizador de datas escolares</h1>
     <h2 style="color: blue;">Provas</h2>
     <div id="quadroprovas"></div>
-    <h2 style="color: rgb(255, 0, 0);">Tarefas</h2>
-    <div id="quadrotarefas"></div>
+<!--    <h2 style="color: rgb(255, 0, 0);">Tarefas</h2> -->
+<!--   <div id="quadrotarefas"></div>        -->
 
 
     <h2>adicionar provas</h2>
-    <input type="text" value="Prova de 'Insira matéria aqui' [Insira Data Aqui]" style="width: 400px; font-size: 18px;" id="addprova">
-    <button id="enviar" onclick="enviarprova()">Inserir Prova</button>
-    <img src="/dashboard_infographic.jpg" alt="Dashboard_infographic.jpg" height="100px" width="200px" style="justify-content: center; text-align: center;">
+    <button id="enviar" onclick="enviarprova()" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;">Inserir Prova</button>
+    <input type="text" id="materiainput" placeholder="Matéria" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;">
+    <input type="text" id="datainput" placeholder="Data || 00/00/00" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;">
+    <button id="carregar" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;" onclick="carregarprovas()">Carregar Provas</button>
 </body>
 
 <script>
@@ -31,13 +38,47 @@
     const quadrotarefas = document.getElementById("quadrotarefas");
     const enviar = document.getElementById("enviar");
     const addprova = document.getElementById("addprova");
-
+    const provas = JSON.parse(localStorage.getItem("provas")) || [];
 
     function enviarprova() {
-        const addprovavalue = addprova.value;
+    let materia = document.getElementById("materiainput").value;
+let data = document.getElementById("datainput").value;
+
+let prova = `Prova de ${materia} em ${data}`;
+
+const container = document.createElement("div");
+
+const novaprova = document.createElement("p");
+novaprova.classList.add("prova");
+novaprova.textContent = prova;
+
+const botaoRemover = document.createElement("button");
+botaoRemover.textContent = "Remover";
+
+botaoRemover.onclick = function() {
+    container.remove();
+};
+
+container.appendChild(novaprova);
+container.appendChild(botaoRemover);
+
+quadroprovas.appendChild(container);
+
+provas.push(prova);
+localStorage.setItem("provas", JSON.stringify(provas));
+}
+
+function carregarprovas() {
+    const provas = JSON.parse(localStorage.getItem("provas")) || [];
+
+    provas.forEach(function(prova) {
         const novaprova = document.createElement("p");
-        novaprova.textContent = addprovavalue;
+
+        novaprova.textContent = prova;
+        novaprova.classList.add("prova");
+
         quadroprovas.appendChild(novaprova);
-    }
+    });
+}
 </script>
 </html>
