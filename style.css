@@ -1,3 +1,4 @@
+
 html {
     background-color: rgb(28, 28, 83);
     color: white;
@@ -6,47 +7,91 @@ html {
 * {
     box-sizing: border-box;
 }
-/* Student panel */
+
+body {
+    margin: 0;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Painel do estudante */
 #student-panel {
     border: 3px solid white;
-    border-radius: 5px;
-    background-color: rgba(68, 68, 91);
+    border-radius: 25px;
+    background-color: rgb(68, 68, 91);
     width: 100%;
-    height: 450px;
+    min-height: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border-radius: 25px;
+}
+
+#student-panel hr {
+    width: 100%;
+    border: 1px solid white;
+}
+
+/* Contadores de tarefas */
+#student-panel > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .task-display {
-    width: 400px;
-    border:  3px solid rgba(28, 28, 83);
+    flex: 1 1 0;
+    min-width: 0;
+    border: 3px solid rgb(28, 28, 83);
     padding: 10px;
     display: flex;
     flex-direction: column;
-    line-height: 5px;
+    line-height: normal;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 20px;
+    overflow-wrap: anywhere;
 }
 
-/* Tasks */
-#Tarefas {
+.task-display p {
+    line-height: normal;
+}
+
+/* Formulário de criação */
+#adicionar-tarefa {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
-.task {
-    width: 100%;
-    height: 150px;
-    border-radius: 15px;
-    background-color: rgba(68, 68, 91);
+
+#nome-tarefa {
+    flex: 1 1 200px;
+    min-width: 0;
     padding: 10px;
-
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    font: inherit;
 }
 
+#prazo-tarefa {
+    max-width: 100%;
+    min-width: 0;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    font: inherit;
+}
 
+#adicionar-btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Lista de tarefas */
 #Tarefas {
     display: flex;
     flex-wrap: wrap;
@@ -56,29 +101,33 @@ html {
 
 .task {
     width: 300px;
+    max-width: 100%;
+    min-width: 0;
     padding: 20px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     background-color: rgb(45, 45, 85);
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
-    min-width: 0;
     overflow-wrap: anywhere;
 }
 
 .task-title {
     margin: 0;
     font-size: 22px;
-    overflow-wrap: anywhere;
 }
 
 .task-status {
     margin: 0;
     font-size: 16px;
     color: rgb(180, 200, 255);
+}
+
+.task-deadline {
+    margin: 0;
+    font-size: 14px;
+    color: rgb(190, 195, 220);
 }
 
 .task-actions {
@@ -97,20 +146,46 @@ html {
     font-weight: bold;
 }
 
-.task-actions button:hover {
+.task-actions button:hover,
+#adicionar-btn:hover {
     filter: brightness(1.15);
 }
 
+/* Ajustes para celulares */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
 
-.task-deadline {
-    margin: 0;
-    font-size: 14px;
-    color: rgb(190, 195, 220);
-}
+    #student-panel {
+        padding: 14px;
+    }
 
-#prazo-tarefa {
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #aaa;
-    font: inherit;
+    #student-panel > div {
+        flex-direction: column !important;
+    }
+
+    .task-display {
+        width: 100%;
+        flex: auto;
+    }
+
+    #adicionar-tarefa {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    #nome-tarefa,
+    #prazo-tarefa,
+    #adicionar-btn {
+        width: 100%;
+    }
+
+    #Tarefas {
+        flex-direction: column;
+    }
+
+    .task {
+        width: 100%;
+    }
 }
