@@ -1,84 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizador de provas</title>
-    <style>
-        html {
-            justify-content: center;
-            text-align: center;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        .prova {
-            background-color: lightgreen;
-            padding: 10px;
-            margin: 5px;
-            border-radius: 8px;
-        }
-    </style>
+    <title>Estuda+ | Organize seus estudos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="align-items: center;  justify-content: center;">
-    <h1 style="color: green;">Organizador de datas escolares</h1>
-    <h2 style="color: blue;">Provas</h2>
-    <div id="quadroprovas"></div>
-<!--    <h2 style="color: rgb(255, 0, 0);">Tarefas</h2> -->
-<!--   <div id="quadrotarefas"></div>        -->
+<body>
+    <header>
+        <div id="student-panel">
+            <p style="font-size: 32px; line-height: 10px; font-weight: bold;">Bem-vindo, Erick!</p>
+            <p style="font-size: 24px;">Série: 8º Ano</p>
+            <!--Tasks displays here-->
+            <hr style="background-color: white; color: white; width: 100%;">
+            <p style="font-weight: 500; font-size: 24px;">Suas tarefas</p>
+            <div style="display: flex; flex-direction: row; gap: 15px;">
+                <div id="pendente-numero" class="task-display" style="background-color: rgba(91, 69, 36); color: rgba(249, 204, 111);">
+                     <p style="font-size: 24px;">Tarefas Pendentes
+                     </p><p id="pendenteID" style="font-size: 32px;">1</p>
+                </div>
+                <div id="emAndamento-numero" class="task-display" style="background-color: rgba(35, 75, 112); color: rgba(141, 202, 255);"> 
+                    <p style="font-size: 24px;">Tarefas sendo feitas</p>
+                    <p id="emAndamentoID" style="font-size: 32px;">2</p>
+                </div>
+                <div id="feito-numero" class="task-display" style="background-color: rgba(36, 91, 64); color: rgba(140, 236, 174);"> 
+                    <p style="font-size: 24px;">Tarefas Completas</p>
+                    <p id="feitoID" style="font-size: 32px;">3</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Suas tarefas</h1>
+        
+
+<div id="adicionar-tarefa">
+    <input
+        type="text"
+        id="nome-tarefa"
+        placeholder="Nome da tarefa..."
+    >
+
+    <label for="prazo-tarefa">Prazo (opcional):</label>
+    <input
+        type="date"
+        id="prazo-tarefa"
+    >
+
+    <button id="adicionar-btn">Adicionar tarefa</button>
+</div>
 
 
-    <h2>adicionar provas</h2>
-    <button id="enviar" onclick="enviarprova()" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;">Inserir Prova</button>
-    <input type="text" id="materiainput" placeholder="Matéria" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;">
-    <input type="text" id="datainput" placeholder="Data || 00/00/00" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;">
-    <button id="carregar" style="margin: 5px; padding: 10px 10px 10px; border-radius: 8px; font-size: 20px;" onclick="carregarprovas()">Carregar Provas</button>
+        <div id="Tarefas">
+            <div class="task">
+    <h2 class="task-title">Eu sou um cartão!</h2>
+    <p class="task-status">Em andamento</p>
+</div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
-
-<script>
-    const quadroprovas = document.getElementById("quadroprovas");
-    const quadrotarefas = document.getElementById("quadrotarefas");
-    const enviar = document.getElementById("enviar");
-    const addprova = document.getElementById("addprova");
-    const provas = JSON.parse(localStorage.getItem("provas")) || [];
-
-    function enviarprova() {
-    let materia = document.getElementById("materiainput").value;
-let data = document.getElementById("datainput").value;
-
-let prova = `Prova de ${materia} em ${data}`;
-
-const container = document.createElement("div");
-
-const novaprova = document.createElement("p");
-novaprova.classList.add("prova");
-novaprova.textContent = prova;
-
-const botaoRemover = document.createElement("button");
-botaoRemover.textContent = "Remover";
-
-botaoRemover.onclick = function() {
-    container.remove();
-};
-
-container.appendChild(novaprova);
-container.appendChild(botaoRemover);
-
-quadroprovas.appendChild(container);
-
-provas.push(prova);
-localStorage.setItem("provas", JSON.stringify(provas));
-}
-
-function carregarprovas() {
-    const provas = JSON.parse(localStorage.getItem("provas")) || [];
-
-    provas.forEach(function(prova) {
-        const novaprova = document.createElement("p");
-
-        novaprova.textContent = prova;
-        novaprova.classList.add("prova");
-
-        quadroprovas.appendChild(novaprova);
-    });
-}
-</script>
 </html>
