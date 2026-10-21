@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estuda+ | Organize seus estudos</title>
+    <title>Nexo | Organize seus estudos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div id="student-panel">
-            <p style="font-size: 32px; line-height: 10px; font-weight: bold;">Bem-vindo, Erick!</p>
-            <p style="font-size: 24px;">Série: 8º Ano</p>
+            <p id="usernameDisplayer" style="font-size: 32px; line-height: 10px; font-weight: bold;">Bem-vindo, Erick!</p>
+            <button id="alterar-nome-btn" title="Alterar nome">
+    ✎ Alterar nome
+</button>
+            <p id="serieDisplay" style="font-size: 24px;">
+    Série: 8º Ano
+</p>
+<button id="alterar-serie-btn" title="Alterar série">
+    ✎ Alterar série
+</button>
             <!--Tasks displays here-->
             <hr style="background-color: white; color: white; width: 100%;">
             <p style="font-weight: 500; font-size: 24px;">Suas tarefas</p>
@@ -28,6 +36,19 @@
                     <p id="feitoID" style="font-size: 32px;">3</p>
                 </div>
             </div>
+
+            <!--BARRA DE PROGRESSO-->
+<div id="progresso-container">
+    <div id="progresso-info">
+        <span>Progresso geral</span>
+        <span id="progresso-texto">0 de 0 concluídas (0%)</span>
+    </div>
+
+    <div id="progresso-fundo">
+        <div id="progresso-barra"></div>
+    </div>
+</div>
+
         </div>
     </header>
 

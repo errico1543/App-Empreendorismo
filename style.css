@@ -9,9 +9,17 @@ html {
 }
 
 body {
+    background: linear-gradient(
+        135deg,
+        #10102f 0%,
+        #1c1c53 45%,
+        #4545a0 100%
+    );
+
+    color: white;
+    min-height: 100vh;
     margin: 0;
-    padding: 16px;
-    font-family: Arial, sans-serif;
+    padding: 20px;
 }
 
 /* Painel do estudante */
@@ -216,3 +224,74 @@ body {
     }
 }
 
+
+/* Progresso geral */
+#progresso-container {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#progresso-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+#progresso-fundo {
+    width: 100%;
+    height: 14px;
+    background-color: rgb(28, 28, 60);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progresso-barra {
+    width: 0%;
+    height: 100%;
+    background-color: rgb(80, 210, 140);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+@media (max-width: 600px) {
+    #progresso-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+#alterar-nome-btn {
+    align-self: flex-start;
+    background: transparent;
+    color: #bbb;
+    border: none;
+    padding: 4px 0;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0.65;
+}
+
+#alterar-nome-btn:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+#alterar-serie-btn {
+    align-self: flex-start;
+    background: transparent;
+    color: #bbb;
+    border: none;
+    padding: 4px 0;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0.65;
+}
+
+#alterar-serie-btn:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
